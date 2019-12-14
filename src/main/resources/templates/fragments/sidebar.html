@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <nav id="sidebar" class="navbar navbar-dark bg-dark " th:fragment="sidebar">
+        <div class="sidebar-header">
+            <h3>Skater App</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>***********************</p>
+            <li >
+                <a href="/skaters/list">Skaters</a>
+            </li>
+            <li>
+                <a href="/competitions/list">Competitions</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Season 2019</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a th:href="@{/results/seriesResults(season=2019,series=CS,sex=F)}"
+                           class="btn btn-info btn-sm">
+                            Challenger Series Women
+                        </a>
+
+                    </li>
+                    <li>
+                        <a th:href="@{/results/seriesResults(season=2019,series=CS,sex=M)}"
+                           class="btn btn-info btn-sm">
+                            Challenger Series Men
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/results/seriesResults(season=2019,series=GP,sex=F)}"
+                           class="btn btn-info btn-sm">
+                            Grand Prix Women
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/results/seriesResults(season=2019,series=GP,sex=M)}"
+                           class="btn btn-info btn-sm">
+                            Grand Prix Men
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+            <p>***********************</p>
+
+        </ul>
+
+        <ul class="list-unstyled">
+            <li>
+                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+            </li>
+            <li>
+                <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+            </li>
+        </ul>
+    </nav>
+
+
+</html>

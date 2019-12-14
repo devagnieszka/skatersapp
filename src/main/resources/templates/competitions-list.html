@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>SkaterApp</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <div th:replace="fragments/sidebar :: sidebar">
+    </div>
+
+
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <!-- content -->
+        <h3>Competition</h3>
+        <hr>
+        <a th:href="@{/competitions/showFormForAdd}"
+           class="btn btn-primary btn-sm mb-3">
+            Add Competition
+        </a>
+
+        <div class="scroll-table">
+         <table class="table table-bordered table-sm table-striped table-condensed">
+             <thead class="thead-dark">
+             <tr>
+                 <th>Name</th>
+                 <th>Season</th>
+                 <th>Series</th>
+                 <th>Action</th>
+             </tr>
+             </thead>
+
+             <tbody>
+             <tr th:each="tempCompetition : ${competitions}">
+
+                 <td th:text="${tempCompetition.name}" />
+                 <td th:text="${tempCompetition.season}" />
+                 <td th:text="${tempCompetition.series}" />
+
+
+                 <td>
+                     <!-- Add "update" button/link -->
+                     <a th:href="@{/competitions/showFormForUpdate(competitionId=${tempCompetition.id})}"
+                        class="btn btn-info btn-sm">
+                         Update
+                     </a>
+
+                     <!-- Add "delete" button/link -->
+                     <a th:href="@{/competitions/delete(competitionId=${tempCompetition.id})}"
+                        class="btn btn-danger btn-sm"
+                        onclick="if (!(confirm('Are you sure you want to delete this competition?'))) return false">
+                         Delete
+                     </a>
+
+                     <a th:href="@{/results/updateResults(competitionId=${tempCompetition.id}, sex=M)}"
+                        class="btn btn-info btn-sm">
+                         Results Men
+                     </a>
+
+                     <a th:href="@{/results/updateResults(competitionId=${tempCompetition.id}, sex=F)}"
+                        class="btn btn-info btn-sm">
+                         Results Women
+                     </a>
+
+                 </td>
+             </tr>
+
+
+             </tbody>
+         </table>
+
+     </div>
+     <!-- content -->
+
+    </div>
+</div>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
