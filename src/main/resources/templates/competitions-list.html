@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -32,7 +32,7 @@
         <!-- content -->
         <h3>Competition</h3>
         <hr>
-        <a th:href="@{/competitions/showFormForAdd}"
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/competitions/showFormForAdd}"
            class="btn btn-primary btn-sm mb-3">
             Add Competition
         </a>

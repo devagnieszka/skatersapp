@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <nav id="sidebar" class="navbar navbar-dark bg-dark " th:fragment="sidebar">
         <div class="sidebar-header">
@@ -8,7 +8,7 @@
 
         <ul class="list-unstyled components">
             <p>***********************</p>
-            <li >
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
                 <a href="/skaters/list">Skaters</a>
             </li>
             <li>
@@ -47,19 +47,20 @@
 
                 </ul>
             </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
+
             <p>***********************</p>
 
         </ul>
 
         <ul class="list-unstyled">
             <li>
-                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                <p sec:authentication="principal.username"></p>
             </li>
             <li>
-                <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                <form th:action="@{/logout}"
+                      method="POST">
+                <button type="submit" class="btn btn-info btn-sm ml-2">Logout</button>
+                </form>
             </li>
         </ul>
     </nav>
